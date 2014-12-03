@@ -1,0 +1,31 @@
+{
+  "name": "api_faker",
+  "description": "Fake http api",
+  "author": {
+    "name": "Anson Chan"
+  },
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "~4",
+    "lodash": "~2.4.1",
+    "node-watch": "~0.3.4",
+    "commander": "~2.5.0"
+  },
+  "devDependencies": {
+    "should": "~2.1.1",
+    "coffee-script": "~1.6.3",
+    "mocha": "~1.17.0"
+  },
+  "bin": {
+    "fakeApi": "./bin/fakeApi"
+  },
+  "scripts": {
+    "compile": "rm -rf ./lib && coffee --compile --output lib/ src/",
+    "prepublish": "npm run compile",
+    "build": "npm i -g .",
+    "debug": "npm run compile && node --debug-brk ./lib/index.js",
+    "test": "cd test && env NODE_ENV=test mocha **/*.coffee --compilers coffee:coffee-script --require should -R spec",
+    "debugtest": "cd test && env NODE_ENV=test mocha **/*.coffee --compilers coffee:coffee-script --require should -R spec --debug-brk",
+    "start": "coffee ./src/index.coffee"
+  }
+}
