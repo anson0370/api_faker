@@ -1,12 +1,11 @@
 _ = require 'lodash'
 path = require 'path'
 commander = require 'commander'
-express = require 'express'
 apiProvider = require './api_provider'
 logger = require './logger'
 
 commander
-  .version('api_faker 0.0.3')
+  .version('api_faker 0.0.4')
   .usage('[options] <file ...>')
   .option('-p, --port <port>', 'use the specified port', '8080')
   .option('-r, --proxy <proxy server url>', 'proxy the mismatch request to another server')
@@ -34,7 +33,14 @@ apiFiles = commander.args.map (apiFile) ->
 
 apiProvider.init apiFiles
 
-app = express()
+app = require('express')()
+
+bodyParser = require 'body-parser'
+multer = require 'multer'
+
+app.use bodyParser.json() # for parsing application/json
+app.use bodyParser.urlencoded({ extended: true }) # for parsing application/x-www-form-urlencoded
+app.use multer() # for parsing multipart/form-data
 
 if commander.proxy isnt undefined
   httpProxy = require 'http-proxy'
@@ -45,7 +51,10 @@ app.all /^(.+)$/, (req, res) ->
   res.header 'Access-Control-Allow-Origin', '*'
 
   path = req.params[0]
-  dataResult = apiProvider.getApiData(path, req.method, req.query)
+  params = {}
+  _.each [req.query, req.body], (p) ->
+    _.assign params, p
+  dataResult = apiProvider.getApiData(path, req.method, params)
   if dataResult.found
     logger.info "[Hitted] #{dataResult.hitted}"
     logger.verbose '[Result]'

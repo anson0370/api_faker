@@ -4,13 +4,15 @@
   "author": {
     "name": "Anson Chan"
   },
-  "version": "0.0.3",
+  "version": "0.0.4",
   "dependencies": {
     "express": "~4",
     "lodash": "~2.4.1",
     "node-watch": "~0.3.4",
     "commander": "~2.5.0",
-    "http-proxy": "~1.7.1"
+    "http-proxy": "~1.7.1",
+    "body-parser": "~1.10.0",
+    "multer": "~0.1.6"
   },
   "devDependencies": {
     "should": "~2.1.1",
