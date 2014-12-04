@@ -6,9 +6,10 @@ apiProvider = require './api_provider'
 logger = require './logger'
 
 commander
-  .version('api_faker 0.0.2')
+  .version('api_faker 0.0.3')
   .usage('[options] <file ...>')
   .option('-p, --port <port>', 'use the specified port', '8080')
+  .option('-r, --proxy <proxy server url>', 'proxy the mismatch request to another server')
   .option('-v, --verbose', 'verbose output')
 
 commander.on '--help', ->
@@ -18,6 +19,7 @@ commander.on '--help', ->
   console.log '    $ fakeApi api.js'
   console.log '    $ fakeApi api.json api2.json api3.js'
   console.log '    $ fakeApi api.json -p 80'
+  console.log '    $ fakeApi api.json -p 80 -r http://localhost:8080'
 
 commander.parse process.argv
 
@@ -34,6 +36,10 @@ apiProvider.init apiFiles
 
 app = express()
 
+if commander.proxy isnt undefined
+  httpProxy = require 'http-proxy'
+  proxy = httpProxy.createProxyServer({})
+
 app.all /^(.+)$/, (req, res) ->
   # always allow cross domain
   res.header 'Access-Control-Allow-Origin', '*'
@@ -48,8 +54,12 @@ app.all /^(.+)$/, (req, res) ->
     res.send(dataResult.result)
   else
     logger.info "[Not Found] [#{req.method}]#{path}"
-    res.status(404)
-    res.send()
+    if commander.proxy isnt undefined
+      proxy.web req, res, {target: commander.proxy}
+      logger.verbose "[Proxy To] #{commander.proxy}\n"
+    else
+      res.status(404)
+      res.send()
 
 app.listen port
 logger.info "API Faker server listening at port: #{port}\n"

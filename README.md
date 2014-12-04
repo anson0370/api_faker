@@ -7,6 +7,7 @@ Easy to fake http api.
 - Standalone http server to provide fake apis.
 - Load `.js` and `.json` file.
 - Watch and reload `.js` and `.json` file. (only tested at OSX)
+- Proxy mismatch request to another server.
 
 ## Install
 
@@ -17,14 +18,15 @@ Easy to fake http api.
 ```
 $ fakeApi -h
 
-  Usage: fakeApi [options] <file ...>
+  Usage: index.coffee [options] <file ...>
 
   Options:
 
-    -h, --help         output usage information
-    -V, --version      output the version number
-    -p, --port <port>  use the specified port
-    -v, --verbose      verbose output
+    -h, --help                      output usage information
+    -V, --version                   output the version number
+    -p, --port <port>               use the specified port
+    -r, --proxy <proxy server url>  proxy the mismatch request to another server
+    -v, --verbose                   verbose output
 
   Examples:
 
@@ -32,6 +34,7 @@ $ fakeApi -h
     $ fakeApi api.js
     $ fakeApi api.json api2.json api3.js
     $ fakeApi api.json -p 80
+    $ fakeApi api.json -p 80 -r http://localhost:8080
 ```
 
 example:
