@@ -7,4 +7,4 @@ module.exports =
     console.log if _.isFunction(log) then log() else log
 
   verbose: (log) ->
-    @info(log) if @verbose
+    @info(log) if @isVerbose

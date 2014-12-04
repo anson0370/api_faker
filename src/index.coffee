@@ -6,7 +6,7 @@ apiProvider = require './api_provider'
 logger = require './logger'
 
 commander
-  .version('api_faker 0.0.1')
+  .version('api_faker 0.0.2')
   .usage('[options] <file ...>')
   .option('-p, --port <port>', 'use the specified port', '8080')
   .option('-v, --verbose', 'verbose output')
@@ -42,7 +42,9 @@ app.all /^(.+)$/, (req, res) ->
   dataResult = apiProvider.getApiData(path, req.method, req.query)
   if dataResult.found
     logger.info "[Hitted] #{dataResult.hitted}"
-    logger.verbose "[Hitted Result] #{dataResult.result}\n"
+    logger.verbose '[Result]'
+    logger.verbose dataResult.result
+    logger.verbose ''
     res.send(dataResult.result)
   else
     logger.info "[Not Found] [#{req.method}]#{path}"

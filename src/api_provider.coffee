@@ -66,7 +66,7 @@ module.exports =
       if fs.existsSync(apiFilePath)
         data = require(apiFilePath)
         apiDatas[apiFilePath] = _.map data, (v, k) -> new Api(k, v)
-        logger.info "[File Loaded] #{apiFilePath}"
+        logger.verbose "[File Loaded] #{apiFilePath}"
       else
         logger.info "[File Not Exists] #{apiFilePath}"
 

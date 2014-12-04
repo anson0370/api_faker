@@ -18,10 +18,16 @@ describe 'api_provider', ->
     result = apiProvider.getApiData('/api/users', 'POST', {})
     result.found.should.be.equal(true)
     result.hitted.should.be.equal('[POST, PUT]/api/users')
+    result.result.should.be.eql({
+      name: "wtf2"
+      })
 
     result = apiProvider.getApiData('/api/users', 'PUT', {})
     result.found.should.be.equal(true)
     result.hitted.should.be.equal('[POST, PUT]/api/users')
+    result.result.should.be.eql({
+      name: "wtf2"
+      })
 
   it 'should call the result function and pass the url params', ->
     result = apiProvider.getApiData('/api/user/12', 'GET', {})

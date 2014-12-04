@@ -4,7 +4,7 @@
   "author": {
     "name": "Anson Chan"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {
     "express": "~4",
     "lodash": "~2.4.1",

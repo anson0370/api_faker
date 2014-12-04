@@ -2,6 +2,12 @@
 
 Easy to fake http api.
 
+## Features
+
+- Standalone http server to provide fake apis.
+- Load `.js` and `.json` file.
+- Watch and reload `.js` and `.json` file. (only tested at OSX)
+
 ## Install
 
 `$ npm install -g api_faker`

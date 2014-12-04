@@ -3,7 +3,7 @@ module.exports = {
     name: "wtf"
   },
   "[POST, PUT]/api/users": {
-    name: "wtf"
+    name: "wtf2"
   },
   "[GET]/api/user/:id": function(url, method, params) {
     return {
