@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
 var path = require("path");
-var lib = path.resolve(path.dirname(__filename), "../lib");
+var lib = path.resolve(__dirname, "../lib");
 
 require(lib + "/index");
