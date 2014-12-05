@@ -5,7 +5,7 @@ apiProvider = require './api_provider'
 logger = require './logger'
 
 commander
-  .version('api_faker 0.0.4')
+  .version('api_faker 0.0.5')
   .usage('[options] <file ...>')
   .option('-p, --port <port>', 'use the specified port', '8080')
   .option('-r, --proxy <proxy server url>', 'proxy the mismatch request to another server')
