@@ -10,7 +10,7 @@
     "lodash": "~2.4.1",
     "node-watch": "~0.3.4",
     "commander": "~2.5.0",
-    "http-proxy": "~1.7.1",
+    "http-proxy": "~1.18.1",
     "body-parser": "~1.10.0",
     "multer": "~0.1.6"
   },
