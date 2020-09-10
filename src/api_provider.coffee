@@ -19,7 +19,7 @@ class Api
     @url = urlMatchResult[3]
 
   match: (targetUrl, method) ->
-    if not _.contains(@methods, 'ALL') and not _.contains(@methods, method)
+    if not _.includes(@methods, 'ALL') and not _.includes(@methods, method)
       return {
         mismatch: true
       }
