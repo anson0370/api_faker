@@ -11,8 +11,8 @@
     "node-watch": "~0.3.4",
     "commander": "~2.5.0",
     "http-proxy": "~1.18.1",
-    "body-parser": "~1.10.0",
-    "multer": "~0.1.6"
+    "body-parser": "~1.20.1",
+    "multer": "~1.4.5-lts.1"
   },
   "devDependencies": {
     "should": "~2.1.1",
